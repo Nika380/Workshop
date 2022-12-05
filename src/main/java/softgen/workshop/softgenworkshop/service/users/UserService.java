@@ -1,5 +1,8 @@
 package softgen.workshop.softgenworkshop.service.users;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.SequenceGenerator;
 import org.springframework.stereotype.Service;
 import softgen.workshop.softgenworkshop.entity.Users;
 import softgen.workshop.softgenworkshop.repository.UsersRepository;
@@ -7,8 +10,10 @@ import softgen.workshop.softgenworkshop.repository.UsersRepository;
 import java.util.List;
 
 
+
 @Service
 public class UserService implements UserInterface{
+
 
 
     private final UsersRepository usersRepository;
@@ -24,8 +29,6 @@ public class UserService implements UserInterface{
 
     @Override
     public Users add(Users user) {
-        user.setId(null);
-        user.setActive(false);
         usersRepository.save(user);
         return user;
     }

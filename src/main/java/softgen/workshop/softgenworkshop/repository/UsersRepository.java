@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Integer> {
-    List<Users> findByActive(boolean delete);
+    List<Users> findByActive(boolean active);
 }

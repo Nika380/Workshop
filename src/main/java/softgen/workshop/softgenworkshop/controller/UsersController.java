@@ -1,6 +1,7 @@
 package softgen.workshop.softgenworkshop.controller;
 
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import softgen.workshop.softgenworkshop.entity.Users;
 import softgen.workshop.softgenworkshop.service.users.UserService;
@@ -38,9 +39,9 @@ public class UsersController {
     }
 
     @DeleteMapping
-    public Users delete(@PathVariable int id) {
+    public ResponseEntity<Users> delete(@PathVariable int id) {
         userService.delete(id);
-        return userService.getById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
