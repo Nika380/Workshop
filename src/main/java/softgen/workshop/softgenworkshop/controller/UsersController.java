@@ -3,7 +3,9 @@ package softgen.workshop.softgenworkshop.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import softgen.workshop.softgenworkshop.entity.Posts;
 import softgen.workshop.softgenworkshop.entity.Users;
+import softgen.workshop.softgenworkshop.service.posts.PostsService;
 import softgen.workshop.softgenworkshop.service.users.UserService;
 
 import java.util.List;
@@ -12,13 +14,15 @@ import java.util.List;
 @RequestMapping("/users")
 public class UsersController {
 
+    private final PostsService postsService;
     private final UserService userService;
 
-    public UsersController(UserService userService) {
+    public UsersController(PostsService postsService, UserService userService) {
+        this.postsService = postsService;
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("")
     public List<Users> getAll() {
         return userService.getAll();
     }
@@ -33,15 +37,21 @@ public class UsersController {
         return userService.add(user);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public Users update(@RequestBody Users user, @PathVariable int id) {
         return userService.update(user, id);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Users> delete(@PathVariable int id) {
+
         userService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/posts")
+    public List<Posts> getUsersPosts(@PathVariable int id) {
+        return postsService.getByUserId(id);
     }
 
 }

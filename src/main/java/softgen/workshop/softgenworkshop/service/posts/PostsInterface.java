@@ -9,5 +9,14 @@ public interface PostsInterface {
 
     Posts userPost(int id);
 
-    Posts updatePost(int id);
+    Posts addPost(Posts posts);
+
+    Posts getPostById(int id);
+
+    Posts updatePost(int id, Posts posts);
+
+    List<Posts> getByUserId(int id);
+
+
+    void deletePost(int id);
 }

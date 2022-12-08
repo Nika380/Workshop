@@ -16,13 +16,13 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "nika")
     @SequenceGenerator(name = "nika", sequenceName = "users_id_seq", allocationSize = 1)
     private Integer id;
-    @Column(name = "user_name")
+    @Column(name = "username")
     private String username;
-    @Column(name = "pasword")
+    @Column(name = "password")
     private String password;
     private String email;
     @Column(name = "create_date")
     private Date createDate = new Date() ;
     @Column(name = "active")
-    private boolean active;
+    private boolean active = true;
 }
